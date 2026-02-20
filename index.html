@@ -2,46 +2,55 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pro FM Radio Web</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>BD Digital FM</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <div class="container">
-        <aside class="sidebar">
-            <div class="logo">
-                <h2><i class="fas fa-radio"></i> My Radio</h2>
-            </div>
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="স্টেশন খুঁজুন...">
-            </div>
-            <ul id="stationList">
-                </ul>
-        </aside>
+    <nav class="glass-nav">
+        <button id="menuToggle"><i class="fas fa-bars"></i></button>
+        <span class="brand">Live Radio</span>
+        <div class="online-indicator"><div class="dot"></div></div>
+    </nav>
 
-        <main class="main-player">
-            <div class="now-playing">
-                <div class="visualizer-container">
-                    <canvas id="visualizer"></canvas>
-                </div>
-                <h1 id="currentTitle">স্টেশন সিলেক্ট করুন</h1>
-                <p id="currentStatus">অফলাইন</p>
-            </div>
-
-            <div class="controls">
-                <button id="playPauseBtn"><i class="fas fa-play"></i></button>
-                <div class="volume-slider">
-                    <i class="fas fa-volume-up"></i>
-                    <input type="range" id="volume" min="0" max="1" step="0.1" value="0.8">
-                </div>
-            </div>
-        </main>
+    <div class="drawer" id="playlistDrawer">
+        <div class="drawer-header">
+            <h3>স্টেশন তালিকা</h3>
+            <input type="text" id="searchStation" placeholder="সার্চ করুন..." onkeyup="search()">
+        </div>
+        <ul id="stationList">
+            <div class="loader">লোডিং...</div>
+        </ul>
     </div>
 
-    <audio id="audioPlayer" crossorigin="anonymous"></audio>
+    <main class="player-body">
+        <div class="album-art">
+            <div class="pulse-ring"></div>
+            <img src="https://cdn-icons-png.flaticon.com/512/3011/3011244.png" id="stationIcon">
+        </div>
+        
+        <div class="info">
+            <h1 id="stationName">চ্যানেল নির্বাচন করুন</h1>
+            <p id="stationFreq">অনলাইন এফএম রেডিও</p>
+        </div>
+
+        <div class="visualizer">
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </main>
+
+    <footer class="player-controls">
+        <div class="vol-container">
+            <i class="fas fa-volume-down"></i>
+            <input type="range" id="volume" min="0" max="1" step="0.05" value="0.8">
+            <i class="fas fa-volume-up"></i>
+        </div>
+        <button id="playBtn" class="play-circle"><i class="fas fa-play"></i></button>
+    </footer>
+
+    <audio id="mainAudio" crossorigin="anonymous"></audio>
     <script src="script.js"></script>
 </body>
 </html>
-
